@@ -1,33 +1,22 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
-import { fetchingApi } from "../api/rapidApi";
+import { commonApi } from "../api/commonApi";
 
 export const youtubeContext = createContext({});
 
 const ContextWrapper = ({ children }) => {
   const [loading, setLoading] = useState(false);
-  const [searchResults, setSearchResults] = useState(false);
+  const [toggleSideNav,setToggleSideNav]=useState(true)
+  const [searchResults, setSearchResults] = useState([]);
   const [selectCategory, setSelectCategory] = useState('New');
   const [mobileMenu, setMobileMenu] = useState(false);
-
-  const fetchSelectedCategoryData = async (query) => {
-    setLoading(true);
-    fetchingApi(`search/?q=${query}`).then(({contents})=>{
-        console.log(contents);
-        setSearchResults(contents)
-        setLoading(false);
-    })
-  };
-
-  // useEffect(()=>{
-  //   fetchSelectedCategoryData(selectCategory)
-  // },[selectCategory])
-
   return (
     <youtubeContext.Provider
       value={{
         loading,
         setLoading,
+        toggleSideNav,
+        setToggleSideNav,
         searchResults,
         setSearchResults,
         selectCategory,

@@ -2,7 +2,9 @@ import React from 'react'
 
 const SearchResultVidoeCard = () => {
   return (
-    <div>SearchResultVidoeCard</div>
+    <div className=' flex flex-col'>
+    
+    </div>
   )
 }
 

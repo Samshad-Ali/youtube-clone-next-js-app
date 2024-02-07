@@ -2,7 +2,9 @@ import React from 'react'
 
 const Loader = () => {
   return (
-    <div>Loader</div>
+    <div className="load-bar">
+    <div className="bar"></div>
+</div>
   )
 }
 
