@@ -2,20 +2,20 @@ import axios from "axios";
 const baseURL = "https://youtube138.p.rapidapi.com";
 const options = {
   params: {
-    q: "desp",
     hl: "en",
-    gl: "US",
+    gl: "IN",
   },
   headers: {
-    "X-RapidAPI-Key": "ef433584camsh231b7d3cd29820cp1bda8djsn70347d8af599",
+    "X-RapidAPI-Key": "fd7de17c6bmsh75ea13187d2124ap19b80djsn0c6ddf5a4d0f",
     "X-RapidAPI-Host": "youtube138.p.rapidapi.com",
   },
 };
-export const commonApi = async (parameter) => {
+export const commonApi = async (parameter,query) => {
   try {
     const response = await axios.get(`${baseURL}/${parameter}`,options);
     return response;
   } catch (error) {
+    console.log(error)
     return error;
   }
 };
