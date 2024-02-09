@@ -18,9 +18,8 @@ const HomePage = () => {
   const fetchSelectedCategoryData = async (query) => {
     setLoading(true);
     commonApi(`search/?q=${query}`).then((res) => {
-      console.log(res?.data?.contents);
       setSearchResults(res?.data?.contents);
-    });
+    }).catch((err=>{console.log('from homepage',err)}))
     setLoading(false);
   };
   useEffect(() => {

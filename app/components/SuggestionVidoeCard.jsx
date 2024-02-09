@@ -1,7 +1,6 @@
 import React from 'react'
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import Link from "next/link";
-import Image from "next/image";
 import VidoeLength from "../shared/VidoeLength";
 import { abbreviateNumber } from "js-abbreviation-number";
 function SuggestionVidoeCard({video}) {

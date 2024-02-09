@@ -24,7 +24,7 @@ const LeftNav = () => {
   };
   return (
     <div
-      className={`md:relative absolute overflow-y-auto h-full bg-primaryClr p-4 z-10 ${
+      className={`md:relative absolute overflow-y-auto h-full bg-primaryClr p-4 z-50 ${
         mobileMenu && "translate-x-0"
       } md:-translate-x-0 -translate-x-[100%] transition-all`}
     >

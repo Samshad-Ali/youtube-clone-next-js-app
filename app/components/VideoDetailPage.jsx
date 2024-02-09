@@ -11,7 +11,7 @@ import { abbreviateNumber } from "js-abbreviation-number";
 import { BiLike, BiDislike } from "react-icons/bi";
 import SuggestionVidoeCard from "./SuggestionVidoeCard";
 
-const VideoDetailPage = () => {
+const VideoDetailPage = () => { 
   const { id } = useParams();
   const [video, setVideo] = useState();
   const [relatedVideo, setRelatedVideo] = useState();
@@ -20,7 +20,6 @@ const VideoDetailPage = () => {
     setLoading(true);
     commonApi(`video/details/?id=${id}`)
       .then((res) => {
-        console.log("from videodetails", res);
         setVideo(res?.data);
       })
       .catch((err) => {
@@ -31,7 +30,6 @@ const VideoDetailPage = () => {
   const fetchRelatedVideo = () => {
     setLoading(true);
     commonApi(`video/related-contents/?id=${id}`).then((res) => {
-      console.log("from relatedVideo", res?.data?.contents);
       setRelatedVideo(res?.data?.contents);
     });
     setLoading(false);
@@ -55,6 +53,7 @@ const VideoDetailPage = () => {
                 width="100%"
                 height="100%"
                 url={`https://www.youtube.com/watch?v=${id}`}
+                playing
               />
             </div>
             <div className="flex flex-col mt-2 gap-2">
