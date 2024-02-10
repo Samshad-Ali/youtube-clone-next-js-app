@@ -1,25 +1,13 @@
 "use client"
-import { useParams } from 'next/navigation'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import Header from './Header'
 import LeftNav from './LeftNav'
 import { youtubeContext } from '../context/contextWrapper'
-import { commonApi } from '../api/commonApi'
 import SearchResultVidoeCard from './SearchResultVidoeCard'
+import useSearchPage from '../hooks/useSearchPage'
 const SearchPage = () => {
-  const {id} = useParams();
-  const {searchResults,setSearchResults,setLoading,loading} = useContext(youtubeContext);
-  const fetchSelectedCategoryData = async () => {
-    setLoading(true);
-    commonApi(`search/?q=${id}`).then((res)=>{
-      console.log(res?.data?.contents);
-      setSearchResults(res?.data?.contents)
-    }).catch((err=>console.log(err)))
-    setLoading(false)
-  }
-  useEffect(()=>{
-    fetchSelectedCategoryData(id)
-  },[id])
+  const {searchResults,loading} = useContext(youtubeContext);
+  useSearchPage();
   return (
     <>
     <Header/>

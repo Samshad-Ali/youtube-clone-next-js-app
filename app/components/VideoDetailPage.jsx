@@ -1,43 +1,20 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext} from "react";
 import ReactPlayer from "react-player";
 import LeftNav from "./LeftNav";
 import Header from "./Header";
-import { useParams } from "next/navigation";
 import { youtubeContext } from "../context/contextWrapper";
-import { commonApi } from "../api/commonApi";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { abbreviateNumber } from "js-abbreviation-number";
 import { BiLike, BiDislike } from "react-icons/bi";
 import SuggestionVidoeCard from "./SuggestionVidoeCard";
+import useVideoDetailPage from "../hooks/useVideoDetailPage";
+import { useParams } from "next/navigation";
 
-const VideoDetailPage = () => { 
-  const { id } = useParams();
-  const [video, setVideo] = useState();
-  const [relatedVideo, setRelatedVideo] = useState();
-  const { setLoading,loading } = useContext(youtubeContext);
-  const fetchingVideoDetail = () => {
-    setLoading(true);
-    commonApi(`video/details/?id=${id}`)
-      .then((res) => {
-        setVideo(res?.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setLoading(false);
-  };
-  const fetchRelatedVideo = () => {
-    setLoading(true);
-    commonApi(`video/related-contents/?id=${id}`).then((res) => {
-      setRelatedVideo(res?.data?.contents);
-    });
-    setLoading(false);
-  };
-  useEffect(() => {
-    fetchingVideoDetail();
-    fetchRelatedVideo();
-  }, [id]);
+const VideoDetailPage = () => {
+  const {id} = useParams(); 
+    const {video,relatedVideo} = useVideoDetailPage();
+    const {loading} = useContext(youtubeContext);
   return (
     <>
       <Header />
@@ -54,6 +31,7 @@ const VideoDetailPage = () => {
                 height="100%"
                 url={`https://www.youtube.com/watch?v=${id}`}
                 playing
+                controls
               />
             </div>
             <div className="flex flex-col mt-2 gap-2">

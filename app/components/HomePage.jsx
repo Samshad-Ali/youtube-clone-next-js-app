@@ -6,25 +6,11 @@ import { youtubeContext } from "../context/contextWrapper";
 import VideoCard from "./VideoCard";
 import { commonApi } from "../api/commonApi";
 import MiniNav from "./MiniNav";
+import useHomePage from "../hooks/useHomePage";
 
 const HomePage = () => {
-  const {
-    searchResults,
-    setSearchResults,
-    setLoading,
-    loading,
-    selectCategory,
-  } = useContext(youtubeContext);
-  const fetchSelectedCategoryData = async (query) => {
-    setLoading(true);
-    commonApi(`search/?q=${query}`).then((res) => {
-      setSearchResults(res?.data?.contents);
-    }).catch((err=>{console.log('from homepage',err)}))
-    setLoading(false);
-  };
-  useEffect(() => {
-    fetchSelectedCategoryData(selectCategory);
-  }, [selectCategory]);
+  const { searchResults, loading } = useContext(youtubeContext);
+  useHomePage();
   return (
     <>
       <Header />
